@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Property Details</title>
+    <link rel="icon" type="image/x-icon" href="/static/assets/website logo.png" />
+<style>
+    .reviews{
+        margin-top:1%;
+        text-align:left;
+        border:1px solid black;        
+    }
+    .review-block{
+        margin-top:1%;
+        text-align:left;
+        border:1px solid black;
+    }
+    .head{
+        margin-top:1%;
+        font-color:black;
+        font-weight:bolder;
+    }
+</style>
+</head>
+<body>
+<div class="row">
+<div class="col-md-12">
+
+
+    {% if id %}
+    <h1>{{ id.title }}</h1>
+    <img src="{{ id.image.url }}" alt="{{ property.title }}" width="300" height="200">
+    <h3>{{ id.desc }}</h3>
+    {% else %}
+        <p>Property not found.</p>
+    {% endif %}    
+
+
+<div class='reviews'>
+<p style="margin-left:1%;">Total Reviews Submitted: {{ total_reviews }}</p>
+<p style="margin-left:1%;">Total Validated Reviews: {{ validated_reviews }}</p>
+</div>
+</div>
+</div>
+
+
+<div>
+    <h3 class='head'>Reviews</h3>
+</div>
+
+{% for review in top_reviews %}
+<div class="review-block border p-3 my-2">
+<h2 style="margin-left:1%;">{{ review.author }}</h2>
+<p style="margin-left:1%;">{{ review.date }}</p>
+<p style="margin-left:1%;">{{ review.text }}</p>
+</div>
+{% endfor %}
+</body>
+
+</html>
