@@ -1,58 +1,181 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <title>Property Details</title>
     <link rel="icon" type="image/x-icon" href="/static/assets/website logo.png" />
-<style>
-    .reviews{
-        margin-top:1%;
-        text-align:left;
-        border:1px solid black;        
-    }
-    .review-block{
-        margin-top:1%;
-        text-align:left;
-        border:1px solid black;
-    }
-    .head{
-        margin-top:1%;
-        font-color:black;
-        font-weight:bolder;
-    }
-</style>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #1a202c;
+        }
+
+        .navbar a {
+            color: #cbd5e0;
+        }
+
+        .navbar a:hover {
+            color: #ffffff;
+        }
+
+        .section-background-1 {
+            background-color: #ffffff;
+        }
+
+        .section-background-2 {
+            background-color: #edf2f7;
+        }
+
+        .section-background-3 {
+            background-color: #e2e8f0;
+        }
+
+        .reviews {
+            margin-top: 1%;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-block {
+            margin-top: 1%;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .head {
+            margin-top: 1%;
+            color: #2d3748;
+            font-weight: bolder;
+        }
+
+        .add-review {
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: #1a202c;
+            color: #cbd5e0;
+            padding: 20px 0;
+        }
+    </style>
 </head>
-<body>
-<div class="row">
-<div class="col-md-12">
 
+<body class="bg-light">
 
-    {% if id %}
-    <h1>{{ id.title }}</h1>
-    <img src="{{ id.image.url }}" alt="{{ property.title }}" width="300" height="200">
-    <h3>{{ id.desc }}</h3>
-    {% else %}
-        <p>Property not found.</p>
-    {% endif %}    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Property Details</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <div class="container-fluid section-background-1 py-4">
+        <div class="row">
+            <div class="col-md-12">
+                {% if id %}
+                <h1 class="text-4xl font-bold my-4">{{ id.title }}</h1>
+                <img src="{{ id.image.url }}" alt="{{ property.title }}" class="img-fluid rounded-lg shadow-lg mb-4">
+                <h3 class="text-lg mb-4">{{ id.desc }}</h3>
+                {% else %}
+                <div class="alert alert-warning" role="alert">
+                    Property not found.
+                </div>
+                {% endif %}
 
-<div class='reviews'>
-<p style="margin-left:1%;">Total Reviews Submitted: {{ total_reviews }}</p>
-<p style="margin-left:1%;">Total Validated Reviews: {{ validated_reviews }}</p>
-</div>
-</div>
-</div>
+                <div class='reviews mt-4 border'>
+                    <p class="mb-2 text-gray-600">Total Reviews Submitted: {{ total_reviews }}</p>
+                    <p class="mb-2 text-gray-600">Total Validated Reviews: {{ validated_reviews }}</p>
+                    <div class="review-block mt-3">
+                        {% for review in top_reviews %}
+                        <div class="mb-4">
+                            <h2 class="text-xl font-semibold">{{ review.author }}</h2>
+                            <p class="text-sm text-gray-600">{{ review.date }}</p>
+                            <p class="mt-2">{{ review.text }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="container-fluid section-background-2 py-4">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3 class="head card-title">Reviews</h3>
+            </div>
+            <div class="card-body">
+                <div class="reviews">
+                    <div class="review-block mb-4">
+                        <!-- Add Review Section -->
+                        <h3 class="head text-lg">Add Your Review</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="authorName">Your Name</label>
+                                <input type="text" class="form-control" id="authorName" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewText">Your Review</label>
+                                <textarea class="form-control" id="reviewText" rows="3"
+                                    placeholder="Enter your review"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div>
-    <h3 class='head'>Reviews</h3>
-</div>
+    <div class="container-fluid section-background-3 py-4">
+        <!-- Add more sections or content as needed -->
+    </div>
 
-{% for review in top_reviews %}
-<div class="review-block border p-3 my-2">
-<h2 style="margin-left:1%;">{{ review.author }}</h2>
-<p style="margin-left:1%;">{{ review.date }}</p>
-<p style="margin-left:1%;">{{ review.text }}</p>
-</div>
-{% endfor %}
+    <!-- Footer -->
+    <div class="footer text-center text-white py-3">
+        &copy; 2024 Property Details. All rights reserved.
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
