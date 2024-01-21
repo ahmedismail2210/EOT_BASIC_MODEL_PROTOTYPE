@@ -68,6 +68,10 @@
 
         .add-review {
             margin-top: 20px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .footer {
@@ -78,7 +82,7 @@
     </style>
 </head>
 
-<body class="bg-light">
+<body>
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -140,23 +144,20 @@
                 <h3 class="head card-title">Reviews</h3>
             </div>
             <div class="card-body">
-                <div class="reviews">
-                    <div class="review-block mb-4">
-                        <!-- Add Review Section -->
-                        <h3 class="head text-lg">Add Your Review</h3>
-                        <form>
-                            <div class="form-group">
-                                <label for="authorName">Your Name</label>
-                                <input type="text" class="form-control" id="authorName" placeholder="Enter your name">
-                            </div>
-                            <div class="form-group">
-                                <label for="reviewText">Your Review</label>
-                                <textarea class="form-control" id="reviewText" rows="3"
-                                    placeholder="Enter your review"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit Review</button>
-                        </form>
-                    </div>
+                <div class="add-review">
+                    <!-- Add Review Section -->
+                    <h3 class="head text-lg">Add Your Review</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="authorName">Your Name</label>
+                            <input type="text" class="form-control" id="authorName" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewText">Your Review</label>
+                            <textarea class="form-control" id="reviewText" rows="3" placeholder="Enter your review"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
                 </div>
             </div>
         </div>
