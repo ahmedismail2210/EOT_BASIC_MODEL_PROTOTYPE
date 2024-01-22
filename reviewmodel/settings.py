@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-6+er01pco09=&q&9@ipv8j7y#2mj-s6zjq$dpf45n-(gtzk$u1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "aaa3dbde-752f-4247-8af1-ab7eae085097-00-tg3s1l5aozv8.kirk.replit.dev"
+]
 
 # Application definition
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webapp2',
+    'Reviews',
     "crispy_forms",
     "crispy_bootstrap5",
 ]

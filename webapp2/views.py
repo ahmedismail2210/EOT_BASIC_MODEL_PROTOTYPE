@@ -63,7 +63,7 @@ def registerUser(request):
       user.save()
       messages.success(request, "User successfully registered!")
       login(request, user)
-      return redirect('home')
+      return redirect('update_account')
     else:
       messages.error(request, "An Error Occurred Please Try Again")
   page = 'register'
@@ -71,6 +71,8 @@ def registerUser(request):
   return render(request, "login_register.html", context)
 
 
+# from django.shortcuts import render
+from .models import Review
 # from .python_script import keyword_search
 
 from django.shortcuts import render
@@ -80,7 +82,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk import pos_tag
 from textblob import TextBlob
-from .models import Review, properties, NewReview  # Make sure to import your models
+from .models import Review, properties
+from Reviews.models import NewReview  # Make sure to import your models
 from django.utils import timezone
 
 
@@ -170,8 +173,8 @@ def review_view(request, property_id):
     new_review.save()
 
   # Continue with the existing code to fetch and filter reviews
-  reviews = Review.objects.filter(address=property.desc).order_by('-date')
-  total_reviews = Review.objects.all().count()
+  reviews = NewReview.objects.filter(address=property.desc).order_by('-date')
+  total_reviews = NewReview.objects.all().count()
 
   filtered_reviews = []
   for review in reviews:
@@ -192,6 +195,7 @@ def review_view(request, property_id):
 
   data = {
       'id': property,
+      'total_count': total_reviews,
       'total_reviews': total_reviews // 2,
       'validated_reviews': len(filtered_reviews),
       'top_reviews': filtered_reviews[:5],
