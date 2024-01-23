@@ -1,0 +1,34 @@
+{% load static %}
+
+<!-- Header Section -->
+<header class="header">
+    <div class="container container--narrow">
+      <a href="" class="header__logo">
+        <div class="container px-5">
+        <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">UW NEST</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        </div>
+      </a>
+      <nav class="header__nav">
+        <input type="checkbox" id="responsive-menu" />
+        <label for="responsive-menu" class="toggle-menu">
+          <span>Menu</span>
+          <div class="toggle-menu__lines"></div>
+        </label>
+        <ul class="header__menu">
+          <li class="header__menuItem"><a href="{% url 'properties' %}">Properties</a></li>
+          {% comment %} <li class="header__menuItem"><a href="">Projects</a></li> {% endcomment %}
+          
+          {% if request.user.is_authenticated %}
+          {% comment %} <li class="header__menuItem"><a href="">Inbox</a></li> {% endcomment %}
+          {% comment %} <li class="header__menuItem"><a href="{%url 'vote_project'%}">Vote Projects</a></li> {% endcomment %}
+          <li class="header__menuItem"><a href="" class="btn btn--sub">Account</a></li>
+          <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
+          {% else %}
+          <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Login</a></li>
+          {% endif %}
+
+        </ul>
+      </nav>
+    </div>
+  </header>
