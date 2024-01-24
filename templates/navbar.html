@@ -22,7 +22,8 @@
           {% if request.user.is_authenticated %}
           {% comment %} <li class="header__menuItem"><a href="">Inbox</a></li> {% endcomment %}
           {% comment %} <li class="header__menuItem"><a href="{%url 'vote_project'%}">Vote Projects</a></li> {% endcomment %}
-          <li class="header__menuItem"><a href="" class="btn btn--sub">Account</a></li>
+          <li class="header__menuItem"><a href="{% url 'profile' %}" class="btn btn--sub">Profile</a></li>
+          <li class="header__menuItem"><a href="{% url 'property' %}" class="btn btn--sub">Property</a></li>
           <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
           {% else %}
           <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Login</a></li>

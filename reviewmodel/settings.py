@@ -25,9 +25,7 @@ SECRET_KEY = 'django-insecure-6+er01pco09=&q&9@ipv8j7y#2mj-s6zjq$dpf45n-(gtzk$u1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "aaa3dbde-752f-4247-8af1-ab7eae085097-00-tg3s1l5aozv8.kirk.replit.dev"
-]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -41,18 +39,23 @@ INSTALLED_APPS = [
     'webapp2',
     'Reviews',
     "crispy_forms",
+    'corsheaders',
     "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+  'corsheaders.middleware.CorsMiddleware',
+  'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = ['https://aaa3dbde-752f-4247-8af1-ab7eae085097-00-tg3s1l5aozv8.kirk.replit.dev']
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'reviewmodel.urls'
 
