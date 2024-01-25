@@ -13,7 +13,7 @@
             <img src="{% static 'images/icon.svg'%}" alt="icon" />
           </a>
           <h3>Register An Account</h3>
-          <p>Create a new developer account</p>
+          <p>Create a new Account</p>
         </div>
 
         <form action="" method="POST" class="form auth__form">
@@ -53,7 +53,7 @@
           <img src="{% static "images/icon.svg" %}" alt="icon" />
         </a>
         <h3>Account Login</h3>
-        <p>Hello Developer, Welcome Back!</p>
+        <p>Hello, Welcome Back!</p>
       </div>
 
       <form action="" method="POST" class="form auth__form">
@@ -85,7 +85,7 @@
         </div>
         <div class="auth__actions">
           <a href="{% url 'home' %}"><button class="btn btn--sub btn--lg" type="submit">Log-in</button></a>
-          {% comment %} <a href="{% url 'reset_password' %}">Forget Password?</a> {% endcomment %}
+          <a href="{% url 'reset_password' %}">Forget Password?</a>
         </div>
       </form>
       <div class="auth__alternative">
