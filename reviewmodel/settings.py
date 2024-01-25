@@ -45,8 +45,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-  'corsheaders.middleware.CorsMiddleware',
-  'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -54,7 +54,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = ['https://aaa3dbde-752f-4247-8af1-ab7eae085097-00-tg3s1l5aozv8.kirk.replit.dev']
+CSRF_TRUSTED_ORIGINS = [
+    'https://aaa3dbde-752f-4247-8af1-ab7eae085097-00-tg3s1l5aozv8.kirk.replit.dev'
+]
+
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = default_headers + ("custom-headers", )
+
+CORS_ORIGIN_WHITELIST = ("http://localhost:8000", "https://Your frontend host")
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'reviewmodel.urls'

@@ -124,7 +124,7 @@ def update_review_model(review):
     review.save()
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def userUpdate(request):
     profile = request.user.profile
     form = ProfileForm(instance=profile)
@@ -147,7 +147,7 @@ def userUpdate(request):
     return render(request, 'account_update.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def createProject(request):
     profile = request.user.profile
     form = PropertyForm()
@@ -177,7 +177,7 @@ def single_profile(request):
     return render(request, 'user-profile.html', data)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def review_view(request, property_id):
     try:
         property = properties.objects.get(pk=property_id)
