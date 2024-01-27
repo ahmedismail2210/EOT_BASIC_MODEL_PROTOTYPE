@@ -9,7 +9,11 @@ class PropertyForm(ModelForm):
 
   class Meta:
     model = properties
-    fields = '__all__'
+    fields = [
+        'title',
+        'desc',
+        'image',
+    ]
 
   def __init__(self, *args, **kwargs):
     super(PropertyForm, self).__init__(*args, **kwargs)

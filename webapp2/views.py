@@ -8,10 +8,14 @@ from .models import properties
 from .python_script import keyword_search
 from django.contrib.auth import login, authenticate, logout
 from collections import Counter
+import nltk
 from .forms import CustomUserCreationForm, ProfileForm, PropertyForm
 
 
 def index(request):
+  nltk.download('punkt')
+  nltk.download('stopwords')
+  nltk.download('averaged_perceptron_tagger')
   return render(request, "index.html")
 
 
@@ -20,6 +24,9 @@ def ranked(request):
 
 
 def Login(request):
+  nltk.download('punkt')
+  nltk.download('stopwords')
+  nltk.download('averaged_perceptron_tagger')
   page = 'login'
   if request.user.is_authenticated:
     return redirect('home')
@@ -162,7 +169,6 @@ def userUpdate(request):
 
 @login_required(login_url='login')
 def createProject(request):
-  profile = request.user.profile
   form = PropertyForm()
 
   if request.method == 'POST':
@@ -188,7 +194,7 @@ def single_profile(request):
   return render(request, 'user-profile.html', data)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def review_view(request, property_id):
   try:
     property = properties.objects.get(pk=property_id)

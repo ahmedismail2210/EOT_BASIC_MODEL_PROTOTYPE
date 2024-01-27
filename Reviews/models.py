@@ -19,7 +19,7 @@ class NewReview(models.Model):
 
 
 class Profile(models.Model):
-  user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+  user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
   image = models.ImageField(upload_to="properties/%y/%m/%d/",
                             null=True,
                             default=None)
