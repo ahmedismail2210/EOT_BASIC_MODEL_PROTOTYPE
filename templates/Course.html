@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/static/css/Course.css'%}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>UWNEST</title>
+    <style>
+        /* Add your CSS styles here */
+        .dropbtn{
+            padding:5px 5px 5px 5px;
+            color:black;
+            font-family:Times New Romans;
+            font-size:15px;
+            margin-left:78%;
+            background-color:transparent;
+            border:1px solid black;
+        }
+        .dropbtn:hover{
+            padding:5px 5px 5px 5px;
+            color:white;
+            font-family:Times New Romans;
+            font-size:15px;
+            margin-left:78%;
+            background-color:green;
+            border:1px solid green;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: fixed;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            min-width: 160px;  /* Set a minimum width for the dropdown */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .detail{
+            color:black;
+        }
+        .content-area{
+            display: flex;
+            background: url({{ id.image.url }});
+            {% comment %} background-repeat:no-repeat; {% endcomment %}
+            background-size:contain;
+            height: 35rem;
+            color: white;
+            font-size: x-large;
+            align-items: end;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <form>
+            <a href="#" id="logo">UW<span>NEST</span></a>
+                <i class="fa fa-search search-icon"></i>
+                <input type="text" name="search" placeholder="Search for courses, subjects or professors">
+            {%if request.user.is_authenticated %}
+            <div class="dropdown">
+                <button class="dropbtn">Profile</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'profile'%}">View Profile</a>
+                    <a href="{% url 'property'%}">Add New property</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}     
+        </form>   
+    </div>
+    {% if id %}
+    <div class=" content-area" id="page-head">
+        <div>
+            <h2>{{ id.title }}</h2>
+            <p>{{ id.desc }}</p>
+        </div>
+    </div>
+    <main>
+        <div class="sub-intro">
+            <ul class="detail" style="padding: 3rem; list-style-type: disc; color:black;">
+                <li style="color: black;">This Property is situated in {{ id.desc }} <br>CANADA near University of Waterloo East Campus 1.</li>
+    <li style="color: black;">Find The Exact Location of properpty : <a href="https://www.google.com/maps/search/?api=1&query={{id.desc}}" target="_blank">Find on Map</a></li>
+    <li style="color: black;">Tracing via substitution.</li>
+    <li style="color: black;">Design, testing, and documentation.</li>
+    <li style="color: black;">Recursive data definitions. Lists and trees. <br>Functional and data abstraction. [Note: See Note 2 above. Offered: F,W,S]</li></ul>
+            <div class="per-represent">
+                <div class="container">
+                    <div class="progress">
+                        <span class="title timer" data-from="0" data-to="{{percentage}}" data-speed="1800">{{percentage}}</span>
+                        <div class="overlay"></div>
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+                <div class="bars">
+                    <p>Valid</p>
+                    <div class="progress-bar">
+                        <div class="progress-indicator" style="width: {{validated_reviews}}%;">{{validated_reviews}}%</div>
+                    </div>
+                    <p>Total</p>
+                    <div class="progress-bar">
+                        <div class="progress-indicator" style="width: {{total_count}}%;">{{total_count}}%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="remaining-details">
+        {% comment %}     <h1>Course Schedule</h1>
+            <table>
+                <thead>
+                    <tr>
+                      <th colspan="2" class="table-head">Spring 2024</th>
+                      <th colspan="2" class="table-head">Winter 2024</th>
+                      <th colspan="2" class="table-head">Fall 2023</th>
+                      <th colspan="2" class="table-head">Spring 2023</th>
+                    </tr>
+                    <tr>
+                      <th>Section</th>
+                      <th>Class</th>
+                      <th>Enrolled</th>
+                      <th>Time</th>
+                      <th>Date</th>
+                      <th>Location</th>
+                      <th>Instructor</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    <tr>
+                        <td>LEC 001</td>
+                        <td>6551</td>
+                        <td>249/260</td>
+                        <td>12:00 AM - 12:00 AM</td>
+                        <td>MTWThFSSu</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  
+                </tbody>
+              </table>
+              <p class="updation">Last updated 3 hours ago from <a href="#">classes.uwaterloo.ca</a></p> {% endcomment %}
+              <div class="overview-section">
+                <section>
+                        <div class="review-form">
+                            <p>What do you think of {{id.title}}?</p>
+                            {% comment %} <button id="likeButton"><i class="fa fa-thumbs-up"></i></button>
+                            <button id="dislikeButton"><i class="fa fa-thumbs-down"></i></button> {% endcomment %}
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="text" id="reviewInput" name='review' placeholder="Write your review...">
+                                <button class="submit-button">Submit Review</button>
+                            </form>
+                          </div>
+                          {% for review in top_reviews %}
+                          <div class="review-card">
+                            <div class="review-content">
+                                <h3>{{ id.title }}</h3>
+                                <p>{{ review.property }}</p>
+                                <p>{{ review.text }}</p>
+                                <div class="review-info">
+                                    <div class="reviewer-info">
+                                        <strong>{{ review.author}} </strong> 
+                                    </div>
+                                    <div class="likes-dislikes">
+                                        <span>Likes: {{review.likes}}</span> | <span>Dislikes: {{review.dislikes}}</span>
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="review_id" value="{{ id.id }}">
+                                            <button type="submit" name="action" value="like">Like</button>
+                                            <button type="submit" name="action" value="dislike">Dislike</button>
+                                        </form>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                          {% endfor %}
+                </section>
+                <aside>
+                    <div class="course-card">
+                        <h6>{{ id.title }}</h6>
+                        <p>No prerequisites</p>
+                        <h6>{{ id.title }}</h6>
+                        <p>No corequisites</p>
+                    
+                        {% comment %} <h6>CS 115 antirequisites</h6>
+                        <a href="#" class="course-link">BME 121</a>,
+                        <a href="#" class="course-link">CS 135</a>
+                    
+                        <h6>CS 115 leads to</h6>
+                        <a href="/course/3" class="course-link course-link-2">CS 103: Algorithms</a>
+                        <a href="/course/4" class="course-link course-link-2">CS 104: Database Management</a>
+                         {% endcomment %}
+                    </div>
+                </aside>
+              </div>
+        </div>
+            
+
+    </main>
+    {% endif %}
+    <footer id="page-foot">
+        <ul id="foot-list1" class="foot-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <ul id="foot-list2" class="foot-list">
+            <a href="#"><i class="fa fa-facebook-f"></i>Facebook</a>
+            <a href="#"><i class="fa fa-envelope"></i>Email</a>
+        </ul>
+    </footer>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Get the value from the search input
+            var searchQuery = document.querySelector('input[name="search"]').value;
+
+            // Redirect to the search URL with the query parameter
+            window.location.href = "{% url 'properties' %}?search=" + encodeURIComponent(searchQuery);
+        });
+    </script> 
+</body>
+</html>

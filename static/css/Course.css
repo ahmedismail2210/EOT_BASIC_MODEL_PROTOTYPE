@@ -1,0 +1,423 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f5f7;
+}
+.navbar {
+    background-color: white;
+    overflow: hidden;
+    text-align: center;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #142441;
+    font-size: 20px;
+}
+.navbar a span{
+    color: #0052cc;
+}
+.navbar #logo {
+    display: inline-block;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+.navbar i{
+    position: absolute;
+    padding: 1.3rem .5rem;
+    color: rgb(151,160,175);
+}
+.navbar input[type=text] {
+    width: 60%;
+    padding: 12px 25px;
+    margin: 8px 0;
+    background-color: #ebecf0;
+    outline: none;
+    border: 0;
+    border-radius: .3rem;
+}
+.content-area{
+    display: flex;
+    background: url(landingpagebg.jpg);
+    height: 13rem;
+    color: white;
+    font-size: x-large;
+    align-items: end;
+}
+.content-area div{
+    padding-left: 14%;
+}
+.per-represent{
+    width: 25rem;
+      height: 11rem;
+      background-color: rgb(255, 255, 255);
+      border-radius: 1rem;
+      border-top-left-radius: 100%;
+      border-bottom-left-radius: 100%;
+      margin-top: -5rem;
+      padding: 20px;
+      box-shadow: 2px 2px 2px gainsboro;
+      display: flex;
+      gap: 2rem;
+}
+.sub-intro{
+    line-height: 1.6rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: white;
+}
+.sub-intro p{
+    width: 40%;
+}
+  .progress {
+    width: 150px;
+    height: 150px;
+    font-size: 30px;
+    color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #07070c;
+    text-align: center;
+    line-height: 200px;
+    margin: 20px;
+    margin-left: 50px;
+    box-shadow: 2px 2px 2px 2px white;
+  }
+  .progress::after {
+    content: "%";
+  }
+  .progress .title {
+    position: relative;
+    z-index: 100;
+  }
+  .progress .overlay {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #07070c;
+  }
+  .progress .left,
+  .progress .right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 10px solid gray;
+    border-radius: 100px 0px 0px 100px;
+    border-right: 0;
+    transform-origin: right;
+  }
+  .progress .left {
+    animation: load1 1s linear forwards;
+  }
+  .progress:last-of-type .right,
+  .progress:first-of-type .right {
+    animation: load3 0.8s linear forwards 1s;
+  }
+  @keyframes load1 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+  
+  @keyframes load3 {
+    0% {
+      z-index: 100;
+      transform: rotate(180deg);
+    }
+    100% {
+      z-index: 100;
+      transform: rotate(315deg);
+    }
+  }
+  .bars{
+    width: 100%;
+  }
+  .progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-indicator {
+    height: 100%;
+    width: 0;
+    background-color: #3498db; 
+    text-align: center;
+    color: white;
+    transition: width 1s ease-in-out; 
+}
+.remaining-details{
+    width: 75%;
+    margin: auto;
+    margin-top: 5rem;
+}
+table {
+    width: 100%;
+    background-color: white;
+  }
+
+  th{
+    padding: 8px;
+    text-align: center;
+  }
+  td{
+    color: #babab6;
+    text-align: center;
+  }
+
+  .table-head{
+    background-color: #dfe1e5;
+    color: black;
+    cursor: pointer;
+  }
+  .table-head:hover{
+    background-color: #bfc1c5;
+  }
+  .table-head:active{
+    background-color: white;
+  }
+  .updation{
+    color: #97a0af;
+  }
+  .updation a{
+    font-weight: 600;
+    color: #97a0af;
+  }
+  section{
+    width: 60%;
+  }
+  .review-form{ 
+    height: 13rem;
+    background-color: white;
+    padding: 2rem;
+  }
+  .review-form p{
+    margin: 20px auto;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  button {
+    display: inline-block;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #3498db;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+  }
+
+  input {
+    padding: 10px;
+    margin-top: 10px;
+    width:20rem;
+    box-sizing: border-box;
+  }
+
+  .submit-button {
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+  }
+  .course-card {
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; 
+}
+
+.course-card h6 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    margin-bottom: 15px;
+}
+
+.course-link {
+    color: #3498db;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.course-link-2{
+    display: block;
+}
+.overview-section{
+    display: flex;
+    justify-content: space-between;
+}
+.review-card {
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 3rem;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.review-card img {
+    border-radius: 50%;
+    width: 80px; 
+    height: 80px; 
+    margin-right: 20px;
+}
+
+.review-content {
+    flex: 1;
+}
+
+.review-content h3 {
+    margin-bottom: 10px;
+}
+
+.review-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likes-dislikes {
+    margin-top: 10px;
+}
+
+
+ul{
+	list-style: none;
+}
+a{
+    text-decoration: none;
+}
+#page-foot{
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem;
+    margin-top: 5rem;
+    background-color: #142441;
+}
+.foot-list{
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 23rem;
+	font-size: large;
+}
+footer li a,i{
+	color: white;
+}
+
+#foot-list1,#foot-list2 a,li{
+	color: white;
+	margin: 0 1rem;
+}
+
+#foot-list2 i{
+	padding-right: .3rem;
+}
+@media screen and (max-width:500px ){
+  .per-represent{
+    flex-direction: column;
+    margin-bottom: 10rem;
+    border-radius: 1rem;
+      border-top-left-radius: 0%;
+      border-bottom-left-radius: 0%;
+}
+}
+@media screen and (max-width: 720px) {
+ 
+ .navbar a, .navbar #logo {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.navbar input[type=text] {
+  width: 100%;
+}
+#page-head{
+    height: 10rem;
+    color: white;
+    font-size: large;
+}
+#page-head h2{
+    width: 85%;
+    margin: auto;
+}
+.sub-intro{
+  flex-direction: column;
+ }
+ .sub-intro P{
+  width: 60%;
+ }
+ .per-represent{
+    margin-top: 0rem;
+}
+.remaining-details{
+  width: 100%;
+}
+.progress-bar {
+  margin-bottom: 0px;
+}
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+section{
+  margin: auto;
+}
+.overview-section{
+  flex-direction: column-reverse;
+}
+.course-card,.review-form,.review-card{
+  width: 90%;
+}
+.review-card{
+  padding: 10px;
+  margin: auto;
+  margin-top: 3rem;
+}
+#page-foot{
+  flex-direction: column;
+}
+.foot-list{
+  width: 20rem;
+}
+section{
+  margin-top: 4rem;
+}
+}
+
+@media (min-width:720px)and (max-width:1160px) {
+  section{
+    width: 47%;
+  }
+  form input {
+    width: 13rem;
+  }
+  .course-card{
+    width: 15rem;
+  }
+}

@@ -1,0 +1,241 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: white;
+  overflow: hidden;
+  text-align: center;
+}
+
+.navbar a {
+  display: inline-block;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: #142441;
+  font-size: 20px;
+}
+.navbar a span{
+  color: #0052cc;
+}
+.navbar #logo {
+  display: inline-block;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+}
+.navbar i{
+  position: absolute;
+  padding: 1.3rem .5rem;
+  color: rgb(151,160,175);
+}
+.navbar input[type=text] {
+  width: 60%;
+  padding: 12px 25px;
+  margin: 8px 0;
+  background-color: #ebecf0;
+  outline: none;
+  border: 0;
+  border-radius: .3rem;
+}
+#page-head{
+  background: url(landingpagebg.jpg);
+  height: 8rem;
+  color: white;
+  font-size: x-large;
+  
+ 
+}
+.content-area{
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  line-height: 1.5;
+  
+  
+}
+#page-head h2{
+  width: 55%;
+  margin: auto;
+}
+main{
+  display: flex;
+  margin: auto;
+  width: 70%;
+  justify-content: space-between;
+}
+
+table {
+  
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.filter-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.round-button {
+  display: inline-block;
+  color: white;
+  background-color: #0052cc;
+  border: none;
+  width: 3rem;
+  height: 2rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.card-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-card input[type="text"],
+.filter-card input[type="range"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+
+#clear-button {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.checkbox-label{
+  font-size: large;
+  font-weight: 600;
+  color: #424d80;
+}
+ul{
+	list-style: none;
+}
+a{
+    text-decoration: none;
+}
+#page-foot{
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem;
+    background-color: #142441;
+}
+.foot-list{
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	font-size: large;
+}
+footer li a,i{
+	color: white;
+}
+#foot-list1,#foot-list2 a,li{
+	color: white;
+	margin: 0 1rem;
+}
+
+#foot-list2 i{
+	padding-right: .3rem;
+}
+@media  (min-width:570px) and (max-width: 768px) {
+  navbar a, .navbar #logo {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  .navbar input[type=text] {
+    width: 100%;
+  }
+  #page-head{
+      height: 10rem;
+      color: white;
+      font-size: large;
+      
+     
+  }
+  #page-head h2{
+      width: 85%;
+      margin: auto;
+  }
+  main{
+    flex-direction: column-reverse;
+  }
+  #foot-list1, #foot-list2 {
+      width: 48%;
+  }
+}
+@media  screen and (max-width:570px)  {
+  navbar a, .navbar #logo {
+    width: 100%;
+  }
+  .navbar input[type=text] {
+    width: 100%;
+  }
+  #page-head{
+      height: 10rem;
+      color: white;
+      font-size: large;
+  }
+  #page-head h2{
+      width: 85%;
+      margin: auto;
+  }
+  main{
+    flex-direction: column-reverse;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #page-foot{
+    flex-direction: column;
+  }
+  .foot-list{
+    width: 20rem;
+  }
+  .filter-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+}

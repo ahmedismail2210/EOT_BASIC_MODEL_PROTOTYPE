@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 import csv
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -13,9 +13,6 @@ from .forms import CustomUserCreationForm, ProfileForm, PropertyForm
 
 
 def index(request):
-  nltk.download('punkt')
-  nltk.download('stopwords')
-  nltk.download('averaged_perceptron_tagger')
   return render(request, "index.html")
 
 
@@ -29,7 +26,7 @@ def Login(request):
   nltk.download('averaged_perceptron_tagger')
   page = 'login'
   if request.user.is_authenticated:
-    return redirect('home')
+    return redirect('properties')
 
   if request.method == "POST":
     username = request.POST['username']
@@ -45,11 +42,11 @@ def Login(request):
     if user is not None:
       login(request, user)
       messages.success(request, " You are Successfully log in ! ")
-      return redirect("home")
+      return redirect("properties")
     else:
       messages.error(request,
                      "Username or Password is incorrect ! Please try again ")
-  return render(request, 'login_register.html')
+  return render(request, 'Uvflow.html')
 
 
 def Logout(request):
@@ -70,12 +67,12 @@ def registerUser(request):
       user.save()
       messages.success(request, "User successfully registered!")
       login(request, user)
-      return redirect('home')
+      return redirect('properties')
     else:
       messages.error(request, "An Error Occurred Please Try Again")
   page = 'register'
   context = {'page': page, 'form': form}
-  return render(request, "login_register.html", context)
+  return render(request, "Uvflow.html", context)
 
 
 # from django.shortcuts import render
@@ -169,6 +166,7 @@ def userUpdate(request):
 
 @login_required(login_url='login')
 def createProject(request):
+  profile = request.user.profile
   form = PropertyForm()
 
   if request.method == 'POST':
@@ -194,12 +192,11 @@ def single_profile(request):
   return render(request, 'user-profile.html', data)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def review_view(request, property_id):
   try:
-    property = properties.objects.get(pk=property_id)
+    property_instance = properties.objects.get(pk=property_id)
   except properties.DoesNotExist:
-    # Handle the case when the property does not exist
     return HttpResponse("Property not found.", status=404)
 
   keywords = [
@@ -211,28 +208,50 @@ def review_view(request, property_id):
 
   # Process form submission
   if request.method == 'POST':
-    text = request.POST.get('review')
-    author = request.user.username  # Assuming the user is authenticated
-    date = timezone.now()
+    print(request.POST)
+    action = request.POST.get('action')
+    review_id = request.POST.get('review_id')
+    print(f"Action: {action}, Review ID: {review_id}")
 
-    # Create a NewReview object and save it to the database
-    new_review = NewReview(
-        text=text,
-        author=author,
-        date=date,
-        property=property.desc,
-        address=property.desc,
-        length=len(text),
-        reasonableness=0,  # Set to your default value
-        comprehensiveness=0,  # Set to your default value
-        relevancy=0,  # Set to your default value
-        tonality=0.0  # Set to your default value
-    )
-    new_review.save()
+    if action and review_id:
+      # Use property_instance instead of property in the get_object_or_404 call
+      review = get_object_or_404(NewReview,
+                                 pk=review_id,
+                                 property=property_instance)
+
+      if action == 'like':
+        review.likes += 1
+      elif action == 'dislike':
+        review.dislikes += 1
+
+      review.save()
+      print("Review saved successfully")
+      return redirect(
+          'properties')  # Replace 'your_redirect_url' with the actual URL
+
+    else:
+      text = request.POST.get('review')
+      author = request.user.username
+      date = timezone.now()
+
+      # Create a NewReview object and save it to the database
+      new_review = NewReview(text=text,
+                             author=author,
+                             date=date,
+                             property=property_instance,
+                             address=property_instance.desc,
+                             length=len(text),
+                             reasonableness=0,
+                             comprehensiveness=0,
+                             relevancy=0,
+                             tonality=0.0)
+      new_review.save()
 
   # Continue with the existing code to fetch and filter reviews
-  reviews = NewReview.objects.filter(address=property.desc).order_by('-date')
-  total_reviews = NewReview.objects.filter(address=property.desc).count()
+  reviews = NewReview.objects.filter(
+      address=property_instance.desc).order_by('-date')
+  total_reviews = NewReview.objects.filter(
+      address=property_instance.desc).count()
 
   filtered_reviews = []
   for review in reviews:
@@ -249,10 +268,10 @@ def review_view(request, property_id):
     if any(keyword in keyword_weights for keyword in keywords):
       filtered_reviews.append(review)
 
-  address = property.desc
+  address = property_instance.desc
 
   data = {
-      'id': property,
+      'id': property_instance,
       'total_count': total_reviews,
       'total_reviews': total_reviews // 2,
       'validated_reviews': len(filtered_reviews),
@@ -260,7 +279,7 @@ def review_view(request, property_id):
       'top_reviews': filtered_reviews[:5],
       'address': address,
   }
-  return render(request, 'property_details.html', data)
+  return render(request, 'Course.html', data)
 
 
 def dashboard(request):
@@ -271,12 +290,36 @@ def contact(request):
   return render(request, "contact.html")
 
 
+from django.db.models import Q, Count
+
+
 def projects(request):
-  proj = properties.objects.all()
+  search_query = request.GET.get('search', '')
+
+  if search_query:
+    # If there is a search query, filter properties based on the query
+    proj = properties.objects.filter(
+        Q(title__icontains=search_query)
+        |  # Replace with the actual field name
+        Q(desc__icontains=search_query)  # Replace with the actual field name
+        # Add more fields as needed
+    )
+  else:
+    # If no search query, retrieve all properties
+    proj = properties.objects.all()
+
+  property_review_counts = []
+  for property in proj:
+    reviews = NewReview.objects.filter(address=property.desc).count()
+    property_review_counts.append(reviews)
+    property_review_count = [count for count in property_review_counts]
+    print(property_review_count)
   data = {
       'proj': proj,
+      'property_review_counts': property_review_count,
+      'search_query': search_query,
   }
-  return render(request, "projects.html", data)
+  return render(request, "Courses.html", data)
 
 
 def upload_csv(request):

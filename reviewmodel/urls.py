@@ -22,10 +22,13 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_view
 
 urlpatterns = [
+    path('properties/<int:property_id>/',
+         views.review_view,
+         name='property_detail'),
     path('admin/', admin.site.urls),
-    path('', views.index, name='home'),
+    # path('' , views.index ,name='home'),
     path('profile-update/', views.userUpdate, name='update_profile'),
-    path('login/', views.Login, name='login'),
+    path('', views.Login, name='login'),
     path('logout/', views.Logout, name='logout'),
     path('reset_password/',
          auth_view.PasswordResetView.as_view(
@@ -46,9 +49,6 @@ urlpatterns = [
     path('add-property/', views.createProject, name='property'),
     path('profile/', views.single_profile, name='profile'),
     path('signup/', views.registerUser, name='register'),
-    path('properties/<slug:property_id>/',
-         views.review_view,
-         name='property_detail'),
     path('properties/', views.projects, name='properties'),
     path('upload_csv/', views.upload_csv, name='upload_csv'),
 ]

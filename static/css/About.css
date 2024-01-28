@@ -1,0 +1,182 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: white;
+    overflow: hidden;
+    text-align: center;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #142441;
+    font-size: 20px;
+}
+.navbar a span{
+    color: #0052cc;
+}
+.navbar #logo {
+    display: inline-block;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+.navbar i{
+    position: absolute;
+    padding: 1.3rem .5rem;
+    color: rgb(151,160,175);
+}
+.navbar input[type=text] {
+    width: 60%;
+    padding: 12px 25px;
+    margin: 8px 0;
+    background-color: #ebecf0;
+    outline: none;
+    border: 0;
+    border-radius: .3rem;
+}
+#page-head{
+    background: url(landingpagebg.jpg);
+    height: 13rem;
+    color: white;
+    font-size: x-large;
+    
+   
+}
+.content-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    line-height: 1.5; 
+}
+#page-head h2{
+    width: 55%;
+    margin: auto;
+}
+#page-details{
+    font-size: large;
+    width: 55%;
+    margin: auto;
+}
+.contributor{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    line-height: 1.5;
+    margin: auto;
+    width: 55%;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 185px;
+    height: 185px;
+    object-fit: cover;
+    margin-right: 25px;
+}
+
+.name {
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.profession {
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.linkedin-link {
+    color: #0077B5;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0px ;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.5;
+}
+#founders{
+padding: 8rem 0;
+}
+.profile-section ul{
+    color: #0077B5;
+}
+ul{
+	list-style: none;
+}
+a{
+    text-decoration: none;
+}
+#page-foot{
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem;
+    background-color: #142441;
+}
+.foot-list{
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 23rem;
+	font-size: large;
+}
+footer li a,i{
+	color: white;
+}
+#foot-list1,#foot-list2 a,li{
+	color: white;
+	margin: 0 1rem;
+}
+
+#foot-list2 i{
+	padding-right: .3rem;
+}
+
+@media screen and (max-width: 720px) {
+    .navbar a, .navbar #logo {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .navbar input[type=text] {
+        width: 100%;
+    }
+    #page-details,#page-head h2,.contributor{
+        font-size: large;
+        width: 75%;
+        margin: auto;
+    }
+}
+@media screen and (max-width: 570px) {
+    .profile-section {
+        flex-direction: column;
+    }
+    #page-foot{
+        flex-direction: column;
+    }
+    .foot-list{
+        width: 20rem;
+
+    }
+}
+@media screen and (max-width: 570px) {
+    .foot-list{
+        width: 13rem;
+
+    }
+}

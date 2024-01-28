@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/static/css/Courses.css'%}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Properties</title>
+    <style>
+        /* Add your CSS styles here */
+        .dropbtn{
+            padding:5px 5px 5px 5px;
+            color:black;
+            font-family:Times New Romans;
+            font-size:15px;
+            margin-left:78%;
+            background-color:transparent;
+            border:1px solid black;
+        }
+        .dropbtn:hover{
+            padding:5px 5px 5px 5px;
+            color:white;
+            font-family:Times New Romans;
+            font-size:15px;
+            margin-left:78%;
+            background-color:green;
+            border:1px solid green;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: fixed;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            min-width: 160px;  /* Set a minimum width for the dropdown */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+        <div class="navbar">
+            <form>
+            <a href="#" id="logo">UW<span>NEST</span></a>
+                <i class="fa fa-search search-icon"></i>
+                <input type="text" name="search" placeholder="Search for courses, subjects or professors">
+            {%if request.user.is_authenticated %}
+            <div class="dropdown">
+                <button class="dropbtn">Profile</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'profile'%}">View Profile</a>
+                    <a href="{% url 'property'%}">Add New property</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}     
+        </form>   
+        </div>
+        <div class=" content-area" id="page-head">
+            <h2>Showing all Properties</h2>
+        </div> 
+        <main>
+            <table>
+                <caption>Properties</caption>
+                <thead>
+                    <tr>
+                        <th>Property Code</th>
+                        <th>Property Name</th>
+                        <th>Address</th>
+                        {% comment %}<th>Useful</th>
+                        <th>Easy</th>
+                        <th>Liked</th> {% endcomment %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in proj%}
+                    <tr style="align-text:center;">
+                        <td><a href="{%url 'property_detail' i.id%}"><u style="color:blue;">{{ i.id }}</u></a></td>
+                        <td>{{ i.title }}</td>
+                        <td>{{ i.desc }}</td>
+                        {% comment %} <td>20%</td>
+                        <td>20%</td>
+                        <td>20%</td> {% endcomment %}
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+            <div class="filter-card">
+                <label for="courseCodeFilter" class="card-label">Course Code:</label>
+                <div>
+                    <button class="round-button" onclick="toggleCourseCodeInput()">2xx</button>
+                    <button class="round-button" onclick="toggleCourseCodeInput()">2xx</button>
+                    <button class="round-button" onclick="toggleCourseCodeInput()">2xx</button>
+                </div>
+            
+                <label for="ratingRangeFilter" class="card-label">Rating Range:</label>
+                <input type="range" id="ratingRangeFilter" min="0" max="5" step="0.1" value="0">
+                <span id="ratingOutput">0</span>
+            
+                <div>
+                    <label for="offeredCheckbox" id="offer" class="card-label">Offered In:</label>
+                    <input type="checkbox" id="onlineCheckbox"><label for="onlineCheckbox" class="checkbox-label">Online</label>
+                    <input type="checkbox" id="offlineCheckbox"><label for="offlineCheckbox" class="checkbox-label">Offline</label>
+                </div>
+            
+                <div>
+                    <label for="prerequisitesCheckbox" class="card-label">Requirements:</label>
+                    <input type="checkbox" id="prerequisitesCheckbox">
+                    <label for="prerequisitesCheckbox" class="checkbox-label">No prerequisites</label>
+                </div>
+            
+                <button onclick="clearFilters()" id="clear-button">Clear Filters</button>
+            </div>
+        </main>
+        <footer id="page-foot">
+            <ul id="foot-list1" class="foot-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+            <ul id="foot-list2" class="foot-list">
+                <a href="#"><i class="fa fa-facebook-f"></i>Facebook</a>
+                <a href="#"><i class="fa fa-envelope"></i>Email</a>
+            </ul>
+        </footer> 
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(event) {
+                // Prevent the default form submission
+                event.preventDefault();
+    
+                // Get the value from the search input
+                var searchQuery = document.querySelector('input[name="search"]').value;
+    
+                // Redirect to the search URL with the query parameter
+                window.location.href = "{% url 'properties' %}?search=" + encodeURIComponent(searchQuery);
+            });
+        </script>                                                          
+</body>
+</html>

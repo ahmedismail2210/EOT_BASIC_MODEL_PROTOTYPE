@@ -1,0 +1,199 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+body{
+    background: url(landingpagebg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: white;
+  }
+
+  header a{
+	text-decoration: none;
+	color: white;
+  }
+  .navbar{
+    padding: 2rem;
+    font-weight: bolder;
+  font-size: large;
+  display: flex;
+  justify-content: space-between;
+  }
+  .navbar h3{
+	display: none;
+  }
+  .main-content{
+    display: flex;
+    justify-content: center;
+    height: 35rem;
+	align-content: center;
+  }
+  .mainline{
+    width: 32rem;
+  }
+  .main-text-area{
+    align-self: center;
+	margin: 0 1rem;
+  }
+  .search-icon{
+	color: black;
+	position:absolute;
+	padding: 1.5rem .5rem;
+}
+  #search-field{
+    width: 32rem;
+    padding: 1rem 2rem;
+    border-radius: .3rem;
+    outline: none;
+	margin: 1rem 0;
+  }
+  #subline{
+    color: rgb(168, 167, 167);
+  }
+  
+  .form-box {
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 25px 35px;
+	border-radius: 5px;
+	margin-top: 3rem;
+	box-shadow: 0 0 10px #000;
+	width: 23rem;
+	height: 28rem;
+}
+
+.form-box .header-text {
+	font-size: 32px;
+	font-weight: 600;
+	padding-bottom: 30px;
+	text-align: center;
+}
+.form-box input {
+	margin: 10px 0px;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	width: 100%;
+	font-size: 18px;
+	font-family: poppins;
+}
+
+
+
+
+.form-box span a {
+	font-size: 16px;
+	color: rgb(168, 167, 167);
+	text-align: center;
+}
+.form-box button {
+	background-color: deepskyblue;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+	padding: 10px;
+	margin: 20px 0px;
+}
+.facebook-button {
+	display: inline-block;
+	background-color: #3c5a99; /* Facebook Blue */
+	color: #fff;
+	padding: 10px 20px;
+	text-decoration: none;
+	width: 17rem;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	margin: .5rem 0rem;
+}
+
+.facebook-logo {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+.connect-button{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+ul{
+	list-style: none;
+}
+#page-foot{
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem;
+}
+.foot-list{
+	display: flex;
+	justify-content: center;
+	font-size: large;
+}
+ul li a,i{
+	color: white;
+	text-decoration: none;
+}
+#foot-list1,#foot-list2 a,li{
+	color: white;
+	margin: 0 1rem;
+	text-decoration: none;
+}
+
+#foot-list2 i{
+	padding-right: .3rem;
+}
+@media screen and (max-width: 950px) {
+	.main-content{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 45rem;
+		align-content: center;
+	  }
+	  body{
+		background: url(landingpagebg.jpg);
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	  color: white;
+	  width: 100vw;
+	  height: 65rem;
+	  }
+	  .form-box {
+		width: 20rem;
+		margin: auto;
+		margin-top: 5rem;
+	}
+	.mainline{
+		font-size: small;
+	}
+	.main-text-area{
+		width: 20rem;
+	}
+	#search-field{
+		width: 20rem;
+		}
+		#page-foot{
+			flex-direction: column;
+			gap: 3rem;
+			padding: .5rem;
+		}
+		
+  }
+  @media (950px <= width <= 1230px)  {
+	.main-content{
+		background-image: url(landingpagebg.jpg);
+	}
+	#page-foot{
+background-color: #3c5a99;
+	}
+  }
