@@ -49,6 +49,10 @@ def Login(request):
   return render(request, 'Uvflow.html')
 
 
+def about(request):
+  return render(request, "About.html")
+
+
 def Logout(request):
   logout(request)
   messages.success(request, " You are Successfully log out ! ")

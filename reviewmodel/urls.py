@@ -51,6 +51,7 @@ urlpatterns = [
     path('signup/', views.registerUser, name='register'),
     path('properties/', views.projects, name='properties'),
     path('upload_csv/', views.upload_csv, name='upload_csv'),
+    path('about/', views.about, name='about')
 ]
 
 if settings.DEBUG:

@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,18 +11,29 @@
 <body>
 
 <div class="navbar">
-    <a href="./Uvflow.html" id="logo">WU<span>FLOW</span></a>
+    <a href="./Uvflow.html" id="logo">UW<span>NEST</span></a>
     <i class="fa fa-search search-icon"></i>
     <input type="text" placeholder="Search for courses, subjects or professors">
-    <a href="./Uvflow.html">Login</a>
+  {%if request.user.is_authenticated %}
+  <div class="dropdown">
+      <button class="dropbtn">Profile</button>
+      <div class="dropdown-content">
+          <a href="{% url 'profile'%}">View Profile</a>
+          <a href="{% url 'property'%}">Add New property</a>
+          <a href="{% url 'logout' %}">Logout</a>
+      </div>
+  </div>
+  {% else %}
+  <a href="{% url 'login' %}">Login</a>
+  {% endif %}     
 </div>
 <div class=" content-area" id="page-head">
-    <h2>About FLow</h2>
+    <h2>About US</h2>
 </div>
 <main style="background-color: rgb(244,245,247);">
     <div class="content-area" id="page-details">
         <div>
-            <h2>Welcome to UW Flow!</h2>
+            <h2>Welcome to UWNEST!</h2>
             <p>Flow is a course planning website for University of Waterloo students. You can find everything from courses and professors to prerequisites here.</br>
             </br>
 
@@ -208,8 +220,8 @@
 </main>
 <footer id="page-foot">
     <ul id="foot-list1" class="foot-list">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="{% url 'properties'%}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="#">Privacy Policy</a></li>
     </ul>
     <ul id="foot-list2" class="foot-list">
