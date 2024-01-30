@@ -1,3 +1,0 @@
-Working of reviewmodel
-to run the project :
-python manage.py runserver ["Port Number"]

@@ -212,16 +212,21 @@ def review_view(request, property_id):
 
   # Process form submission
   if request.method == 'POST':
-    print(request.POST)
     action = request.POST.get('action')
     review_id = request.POST.get('review_id')
-    print(f"Action: {action}, Review ID: {review_id}")
-
+    print(f"action: {action}, review_id: {review_id}")
     if action and review_id:
-      # Use property_instance instead of property in the get_object_or_404 call
-      review = get_object_or_404(NewReview,
-                                 pk=review_id,
-                                 property=property_instance)
+      # Check if property_instance is None
+      if not property_instance:
+        return HttpResponse("Property not found.", status=404)
+
+      try:
+        # Use property_instance instead of property in the get_object_or_404 call
+        review = get_object_or_404(NewReview,
+                                   pk=review_id,
+                                   property=property_instance)
+      except NewReview.DoesNotExist:
+        return HttpResponse("Review not found.", status=404)
 
       if action == 'like':
         review.likes += 1
